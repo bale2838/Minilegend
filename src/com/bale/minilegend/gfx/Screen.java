@@ -17,7 +17,6 @@ public class Screen {
 		this.sheet = sheet;
 		this.w = w;
 		this.h = h;
-		
 		pixels =  new int[w * h];
 	}
 	
