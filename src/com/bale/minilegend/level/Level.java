@@ -21,7 +21,7 @@ public class Level {
 	public byte[] data;
 	public List<Entity>[] entitiesInTiles;
 
-	public int grassColor = 255;
+	public int grassColor = 142;
 	private int depth;
 	public List<Entity> entities = new ArrayList<Entity>();
 	private Comparator<Entity> spriteSorter = new Comparator<Entity>() {
@@ -70,7 +70,6 @@ public class Level {
 	public void renderSprites(Screen screen, int xScroll, int yScroll) {
 		int xo = xScroll >> 4;
 		int yo = yScroll >> 4;
-
 		int w = (screen.w + 15) >> 4;
 		int h = (screen.h + 15) >> 4;
 
@@ -96,27 +95,23 @@ public class Level {
 	}
 
 	public Tile getTile(int x, int y) {
-		if (x < 0 || y < 0 || x >= w || y >= h)
-			return Tile.grass;
+		if (x < 0 || y < 0 || x >= w || y >= h) return Tile.grass;
 		return Tile.tiles[tiles[x + y * w]];
 	}
 
 	public void setTile(int x, int y, Tile t, int dataVal) {
-		if (x < 0 || y < 0 || x >= w || y >= h)
-			return;
+		if (x < 0 || y < 0 || x >= w || y >= h) return;
 		tiles[x + y * w] = t.id;
 		data[x + y * w] = (byte) dataVal;
 	}
 
 	public int getData(int x, int y) {
-		if (x < 0 || y < 0 || x >= w || y >= h)
-			return 0;
+		if (x < 0 || y < 0 || x >= w || y >= h) return 0;
 		return data[x + y * w] & 0xff;
 	}
 
 	public void setData(int x, int y, int val) {
-		if (x < 0 || y < 0 || x >= w || y >= h)
-			return;
+		if (x < 0 || y < 0 || x >= w || y >= h) return;
 		data[x + y * w] = (byte) val;
 	}
 	

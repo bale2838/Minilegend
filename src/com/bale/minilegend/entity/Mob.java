@@ -9,6 +9,8 @@ public class Mob extends Entity {
 
 	public Mob() {
 		x = y = 8;
+		xr = 4;
+		yr = 3;
 	}
 
 	public void tick() {
@@ -19,9 +21,9 @@ public class Mob extends Entity {
 		if (xa != 0 || ya != 0) {
 			walkDist++;
 			if (xa < 0) dir = 2;
-			if (xa < 0) dir = 3; 
+			if (xa > 0) dir = 3; 
 			if (ya < 0) dir = 1; 
-			if (ya < 0) dir = 0; 
+			if (ya > 0) dir = 0; 
 		}
 		return super.move(xa, ya);
 	}

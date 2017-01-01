@@ -59,29 +59,8 @@ public class Entity {
 	protected boolean move2(int xa, int ya) {
 		if (xa != 0 && ya != 0) throw new IllegalArgumentException("Move2 can only move along one axis at a time!");
 		
-		
-		return false;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		x += xa;
+		y += ya;
+		return true;
 	}
 }

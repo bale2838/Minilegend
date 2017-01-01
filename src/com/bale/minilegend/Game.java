@@ -41,8 +41,8 @@ public class Game extends Canvas implements Runnable {
 	public int gameTime = 0;
 
 	private Level level;
-	private Level[] levels = new Level[3];
-	private int currentLevel = 0;
+	private Level[] levels = new Level[5];
+	private int currentLevel = 3;
 	public Player player;
 
 	public Menu menu;
@@ -51,8 +51,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
-		if (menu != null)
-			menu.init(this, input);
+		if (menu != null) menu.init(this, input);
 	}
 
 	public void start() {
@@ -68,13 +67,15 @@ public class Game extends Canvas implements Runnable {
 		gameTime = 0;
 		hasWon = false;
 
-		levels = new Level[4];
+		levels = new Level[5];
 		currentLevel = 3;
 
-		levels[3] = new Level(128, 128, 1, null);
-		levels[2] = new Level(128, 128, 0, levels[3]);
-		levels[1] = new Level(128, 128, -1, levels[2]);
-
+		levels[4] = new Level(128, 128, 1, null);
+		levels[3] = new Level(128, 128, 0, levels[4]);
+		levels[2] = new Level(128, 128, -1, levels[3]);
+		levels[1] = new Level(128, 128, -2, levels[2]);
+		levels[0] = new Level(128, 128, -3, levels[1]);
+		
 		level = levels[currentLevel];
 		player = new Player(this, input);
 		player.findStartPos(level);
@@ -101,8 +102,7 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		try {
-			screen = new Screen(WIDTH, HEIGHT,
-					new SpriteSheet(ImageIO.read(Game.class.getResourceAsStream("/icons.png"))));
+			screen = new Screen(WIDTH, HEIGHT, new SpriteSheet(ImageIO.read(Game.class.getResourceAsStream("/icons.png"))));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -172,7 +172,7 @@ public class Game extends Canvas implements Runnable {
 		int xScroll = player.x - screen.w / 2;
 		int yScroll = player.y - (screen.h - 8) / 2;
 		level.renderBackground(screen, xScroll, yScroll);
-		//level.renderSprites(screen, xScroll, yScroll);
+		level.renderSprites(screen, xScroll, yScroll);
 
 		for (int y = 0; y < screen.h; y++) {
 			for (int x = 0; x < screen.w; x++) {
